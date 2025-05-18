@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Time   : 2025/5/18 18:56
+@Author : liual
+@File   : 2.RunnableParallel模拟检索.py
+"""
+import os
+
+import dotenv
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain_openai import ChatOpenAI
+
+
+def retrieval(query: str) -> str:
+    """检索器"""
+    print("正在检索", query)
+    return "我是刘大帅"
+
+
+dotenv.load_dotenv()
+
+prompt = ChatPromptTemplate.from_template("""
+<context>
+{context}
+</context>
+用户提问的问题是: {query}
+""")
+llm = ChatOpenAI(base_url=os.getenv("OPENAI_URL"), model="deepseek-chat")
+parser = StrOutputParser()
+
+chain = RunnablePassthrough.assign(context=lambda x: retrieval(x["query"])) | prompt | llm | parser
+
+ai_message = chain.invoke({"query": "你好，我是谁?"})
+
+print(ai_message)
