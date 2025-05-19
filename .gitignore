@@ -3,3 +3,5 @@ temp/*
 storage/*
 .idea/*
 venv/*
+
+__pycache__/
