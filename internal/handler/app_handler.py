@@ -6,8 +6,8 @@
 @File   : app_handler
 """
 import os
-import uuid
 from dataclasses import dataclass
+from uuid import UUID
 
 from injector import inject
 from langchain_core.output_parsers import StrOutputParser
@@ -31,19 +31,19 @@ class AppHandler:
         app = self.app_service.create_app()
         return success_message(f"应用已经创建成功{app.id}");
 
-    def get_app(self, id: uuid.UUID):
+    def get_app(self, id: UUID):
         app = self.app_service.get_app(id)
         return success_message(f"应用已经获取对应app的名字是{app.name}")
 
-    def update_app(self, id: uuid.UUID):
+    def update_app(self, id: UUID):
         app = self.app_service.update_app(id)
         return success_message(f"应用已经成功修改, 修改的名字是{app.name}")
 
-    def delete_app(self, id: uuid.UUID):
+    def delete_app(self, id: UUID):
         app = self.app_service.delete_app(id)
         return success_message(f"应用已经成功删除，id为{app.id}")
 
-    def completion(self):
+    def debug(self, app_id: UUID):
         """聊天接口"""
         req = CompletionReq()
         if not req.validate():
