@@ -9,6 +9,7 @@ import logging
 import os
 
 from flask import Flask
+from flask_cors import CORS
 from flask_migrate import Migrate
 
 from config import Config
@@ -44,6 +45,8 @@ class Http(Flask):
         with self.app_context():
             _ = App()
             # db.create_all()
+
+        CORS(self, origins="*", methods=["GET", "POST", "OPTIONS"], supports_credentials=True)
         router.register_router(self)
 
     def _register_error_handler(self, error: Exception):

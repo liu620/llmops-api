@@ -12,13 +12,13 @@ from typing import Any, Optional, Union
 from uuid import UUID
 
 import dotenv
+from langchain import ChatOpenAI
 from langchain_core.callbacks import StdOutCallbackHandler, BaseCallbackHandler
 from langchain_core.messages import BaseMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.outputs import GenerationChunk, ChatGenerationChunk, LLMResult
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
-from langchain_openai import ChatOpenAI
 
 dotenv.load_dotenv()
 

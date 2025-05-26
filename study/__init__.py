@@ -5,3 +5,6 @@
 @Author : liual
 @File   : __init__.py.py
 """
+from .NativeClient import client, llm
+
+__all__ = ['client', 'llm']
