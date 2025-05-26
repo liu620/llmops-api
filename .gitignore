@@ -3,5 +3,7 @@ temp/*
 storage/*
 .idea/*
 venv/*
+# vscode
+.vsvpde/*
 
 __pycache__/
