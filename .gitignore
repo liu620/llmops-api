@@ -4,6 +4,6 @@ storage/*
 .idea/*
 venv/*
 # vscode
-.vsvpde/*
+.vscode/**
 
 __pycache__/
